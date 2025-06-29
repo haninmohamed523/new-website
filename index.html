@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>MUST University</title>
+  <meta name="description" content="MUST University - World-Class Education for a Global Future">
+  <meta name="keywords" content="MUST University, Education, Engineering, IT, Business, Medicine, Law, Registration">
+  <meta name="author" content="MUST University">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Segoe+UI&display=swap">
+  <style>
+    :root {
+      --primary-color: #00274d;
+      --accent-color: #0053a4;
+      --light-bg: #f9f9f9;
+      --dark-bg: #121212;
+      --light-text: #333;
+      --dark-text: #e0e0e0;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: var(--light-bg);
+      color: var(--light-text);
+      line-height: 1.6;
+      scroll-behavior: smooth;
+    }
+
+    header {
+      background-color: var(--primary-color);
+      color: white;
+      padding: 20px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 999;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+    }
+
+    header h1 {
+      font-size: 1.8rem;
+      display: flex;
+      align-items: center;
+    }
+
+    header img {
+      width: 45px;
+      margin-left: 10px;
+    }
+
+    nav a {
+      color: white;
+      margin-left: 20px;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    .hero {
+      position: relative;
+      height: 90vh;
+      overflow: hidden;
+    }
+
+    .hero img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      position: absolute;
+      transition: opacity 0.8s ease-in-out;
+    }
+
+    .hero-content {
+      position: absolute;
+      z-index: 2;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      color: white;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
+
+    .hero-content h2 { font-size: 2.8rem; margin-bottom: 20px; }
+    .hero-content p { font-size: 1.2rem; margin-bottom: 30px; }
+
+    .hero-content button {
+      background-color: var(--accent-color);
+      color: white;
+      padding: 12px 25px;
+      margin: 6px;
+      font-size: 1rem;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .hero-content button:hover {
+      background-color: #003d75;
+    }
+
+    main {
+      padding: 60px 20px;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    h2 {
+      text-align: center;
+      font-size: 2rem;
+      margin-bottom: 30px;
+      color: var(--primary-color);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 30px;
+    }
+
+    .card {
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      padding: 25px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+    }
+
+    form {
+      max-width: 600px;
+      margin: auto;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 6px;
+      font-weight: 600;
+    }
+
+    input, select, textarea {
+      width: 100%;
+      padding: 10px;
+      font-size: 1rem;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+    }
+
+    button[type="submit"] {
+      background-color: var(--primary-color);
+      color: white;
+      padding: 10px 20px;
+      font-size: 1rem;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button[type="submit"]:hover {
+      background-color: var(--accent-color);
+    }
+
+    #game {
+      position: relative;
+      height: 300px;
+      background-color: #e1f5fe;
+      border-radius: 10px;
+      overflow: hidden;
+      margin-top: 20px;
+      text-align: center;
+    }
+
+    #logo {
+      width: 60px;
+      position: absolute;
+      cursor: pointer;
+      transition: transform 0.2s ease;
+    }
+
+    #score {
+      font-size: 1.5rem;
+      color: #0053a4;
+    }
+
+    .comments-display > div {
+      background: #eef6ff;
+      padding: 10px;
+      border-radius: 6px;
+      margin-bottom: 10px;
+    }
+
+    .comments-display button {
+      background: transparent;
+      border: none;
+      color: #d00;
+      cursor: pointer;
+      font-size: 1rem;
+      margin-left: 10px;
+    }
+
+    .back-to-top {
+      position: fixed;
+      right: 20px;
+      bottom: 20px;
+      background: var(--primary-color);
+      color: white;
+      border: none;
+      padding: 10px;
+      border-radius: 50%;
+      font-size: 20px;
+      display: none;
+      cursor: pointer;
+    }
+
+    footer {
+      background-color: #001f3f;
+      color: white;
+      text-align: center;
+      padding: 40px 20px;
+      margin-top: 60px;
+    }
+
+    .dark-mode {
+      background-color: var(--dark-bg);
+      color: var(--dark-text);
+    }
+
+    .dark-mode .card,
+    .dark-mode input,
+    .dark-mode textarea,
+    .dark-mode select,
+    .dark-mode .comments-display > div {
+      background-color: #1e1e1e;
+      color: white;
+      border-color: #444;
+    }
+
+    @media (max-width: 768px) {
+      .hero-content h2 { font-size: 2rem; }
+      .hero-content p { font-size: 1rem; }
+    }
+    #news {
+  margin-top: 60px;
+  text-align: center;
+}
+
+.news-slider {
+  position: relative;
+  max-width: 600px;
+  margin: 30px auto;
+  overflow: hidden;
+  height: 200px;
+}
+
+.news-card {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: white;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+  opacity: 0;
+  transform: translateX(100%);
+  transition: all 0.6s ease;
+}
+
+.news-card.active {
+  opacity: 1;
+  transform: translateX(0);
+  z-index: 2;
+}
+
+.news-card h3 {
+  color: var(--primary-color);
+  margin-bottom: 10px;
+}
+.video-container {
+  position: relative;
+  padding-bottom: 25%; 
+  padding-top: 25px;
+  height: 0;
+  overflow: hidden;
+  max-width: 1000px;
+  max-height:100px;
+  margin: auto;
+}
+
+.video-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+.countdown-box {
+  background: #e3f2fd;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  max-width: 400px;
+  margin: 30px auto; 
+}
+
+
+.countdown-box p {
+  font-size: 1.6rem;
+  color: #0d47a1;
+  margin: 0;
+}
+
+#campus-map {
+  padding: 60px 20px;
+  text-align: center;
+}
+.footer-content {
+  background-color: #001f3f;
+  color: white;
+  text-align: center;
+  padding: 40px 20px;
+}
+
+.footer-content h2 {
+  font-size: 1.8rem;
+  margin-bottom: 10px;
+}
+
+.footer-content p {
+  font-size: 1rem;
+  margin: 5px 0;
+}
+
+.footer-content a {
+  color: #ffffff;
+  text-decoration: none;
+}
+
+.footer-content a:hover {
+  text-decoration: underline;
+}
+
+.social-icons {
+  margin-top: 15px;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.social-icons img {
+  width: 35px;
+  height: 35px;
+  filter: invert(100%);
+  transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.social-icons img:hover {
+  transform: scale(1.2);
+}
+
+  </style>
+</head>
+<body>
+  <header>
+    <h1>MUST University <img style="border-radius:300px;" src="must.png" alt="MUST Logo">
+</h1>
+    <nav>
+      <a href="#Videotour">Video tour</a>
+       <a href="#countdown-section">Countdown</a>
+      <a href="#programs">Programs</a>
+      <a href="#register">Register</a>
+       <a href="#news">News</a>
+      <a href="#comments">Comments</a>
+      <a href="#game">Game</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <img id="hero-image" src="opera.jpg" alt="Campus view">
+    <div class="hero-content">
+      <h2>Welcome to MUST University</h2>
+      <p>World-class education for global impact</p>
+<button onclick="document.getElementById('programs').scrollIntoView({behavior:'smooth'}); document.getElementById('welcomeAudio').play();">Explore Programs</button>
+      <button onclick="document.body.classList.toggle('dark-mode')" aria-label="Toggle Dark Mode">Toggle Dark Mode</button>
+ <audio id="welcomeAudio" autoplay>
+  <source src="welcome.mp3" type="audio/mpeg">
+ 
+</audio>
+
+ 
+
+
+    </div>
+  </section>
+<section id="Videotour">
+  <h2>🎥 Campus Tour Video</h2>
+  <div class="video-container">
+    <iframe 
+      src="https://www.youtube.com/embed/1qxkJ_qhaks?start=1&autoplay=1&mute=1" 
+      title="Campus Tour" frameborder="0" 
+      allow="accelerometer; autoplay; clipboard-write; 
+      encrypted-media; gyroscope; picture-in-picture; autoplay" 
+      allowfullscreen>
+    </iframe>
+  </div>
+</section>
+
+<section id="countdown-section">
+  <h2>🎓 Countdown to Semester Start</h2>
+ <div class="countdown-box">
+  <p id="countdown"></p>
+</div>
+
+</section>
+
+  <main>
+    <section id="programs">
+      <h2>Our Academic Programs</h2>
+      <div class="grid">
+        <div class="card"><h3>Engineering</h3><p>Innovate with civil, electrical, and software engineering disciplines.</p></div>
+        <div class="card"><h3>Business</h3><p>Learn strategic management and global entrepreneurship.</p></div>
+        <div class="card"><h3>Information Technology</h3><p>Specialize in cloud computing, security, and systems architecture.</p></div>
+        <div class="card"><h3>Medicine</h3><p>Train in clinical excellence with real patient interaction.</p></div>
+        <div class="card"><h3>Law</h3><p>Understand justice systems through global perspectives.</p></div>
+        <div class="card"><h3>Arts</h3><p>Shape culture with visual, performing, and literary arts.</p></div>
+        <div class="card"><h3>Psychology</h3><p>Explore cognition, emotion, and behavior in human systems.</p></div>
+      </div>
+    </section>
+
+    
+    <section id="register">
+      <h2>Student Registration</h2>
+      <form onsubmit="handleRegister(event)">
+        <div class="form-group">
+          <label for="name">Full Name</label>
+          <input id="name" placeholder="Enter your name" required />
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input id="email" type="email" placeholder="Enter your email" required />
+        </div>
+        <div class="form-group">
+          <label for="program">Program</label>
+          <select id="program" required>
+            <option value="">Select a program</option>
+            <option>Engineering</option>
+            <option>Business</option>
+            <option>IT</option>
+            <option>Law</option>
+          </select>
+        </div>
+        <button type="submit">Register</button>
+      </form>
+    </section>
+<section id="news">
+  <h2>📢 Latest News & Updates</h2>
+  <div class="news-slider">
+    <div class="news-card active">
+      <h3>🎓 AI Research Grant Awarded</h3>
+      <p>MUST University secures $2M for AI research and innovation.</p>
+      <small>🗓️ June 25, 2025</small>
+    </div>
+    <div class="news-card">
+      <h3>🌍 Global Internship Program</h3>
+      <p>Students can apply for internships in 10+ countries.</p>
+      <small>🗓️ June 15, 2025</small>
+    </div>
+    <div class="news-card">
+      <h3>🏫 New Campus in Nairobi</h3>
+      <p>Grand opening this August. Join the celebrations!</p>
+      <small>🗓️ June 10, 2025</small>
+    </div>
+  </div>
+</section>
+
+    <section id="comments">
+      <h2>Leave a Comment</h2>
+      <form onsubmit="handleComment(event)">
+        <div class="form-group">
+          <label for="commenter">Your Name</label>
+          <input id="commenter" placeholder="Enter your name" required />
+        </div>
+        <div class="form-group">
+          <label for="comment">Your Comment</label>
+          <textarea id="comment"placeholder="Write your comment" rows="4" required></textarea>
+        </div>
+        <button type="submit">Post Comment</button>
+      </form>
+      <div class="comments-display" id="commentsDisplay"></div>
+    </section>
+  </main>
+<section id="game">
+      <h2>Catch the Logo!</h2>
+      <p>Click the logo to score!</p>
+      <p><strong>Score:</strong> <span id="score">0</span></p>
+      <img id="logo" style="border-radius:300px;width:100px;height:100px;" src="must.png" alt="Catch Me">
+    </section>
+
+  <footer>
+    
+</section>
+    <p>&copy; <span id="year"></span> MUST University. All rights reserved.</p>
+  <div class="footer-content">
+    <h2 style="color:white">📞 Contact Us</h2>
+    <p>Have questions? Reach out anytime.</p>
+    <p>Email: <a href="mailto:info@must.edu.eg">info@must.edu.eg</a> | Phone: <a href="tel:+20238247456">+20 2 3824 7456</a></p>
+
+    <div class="social-icons">
+      <a href="https://facebook.com/mustuni" target="_blank" aria-label="Facebook">
+        <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/facebook.svg" alt="Facebook">
+      </a>
+      <a href="https://instagram.com" target="_blank" aria-label="Instagram">
+        <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/instagram.svg" alt="Instagram">
+      </a>
+      <a href="https://linkedin.com/school/misr-university-for-science-and-technology/" target="_blank" aria-label="LinkedIn">
+        <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/linkedin.svg" alt="LinkedIn">
+      </a>
+      <a href="https://twitter.com/must_university" target="_blank" aria-label="Twitter">
+        <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/x.svg" alt="Twitter (X)">
+      </a>
+      <a href="https://wa.me/201234567890" target="_blank" aria-label="WhatsApp">
+        <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/whatsapp.svg" alt="WhatsApp">
+      </a>
+    </div>
+
+    <p style="margin-top: 20px;">&copy; <span id="year"></span> MUST University. All rights reserved.</p>
+  </div>
+
+
+  </footer>
+
+  <button class="back-to-top" onclick="window.scrollTo({top:0, behavior:'smooth'})" aria-label="Back to Top">↑</button>
+<script>
+  const targetDate = new Date("2025-08-01T00:00:00");
+
+  function updateCountdown() {
+    const now = new Date();
+    const diff = targetDate - now;
+
+    if (diff <= 0) {
+      document.getElementById("countdown").textContent = "📚 The semester has started! Good luck!";
+      return;
+    }
+
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+    const minutes = Math.floor((diff / (1000 * 60)) % 60);
+    const seconds = Math.floor((diff / 1000) % 60);
+
+    document.getElementById("countdown").textContent =
+      `📅 The semester starts in ${days}d ${hours}h ${minutes}m ${seconds}s`;
+  }
+
+  updateCountdown(); // run once immediately
+  setInterval(updateCountdown, 1000); // update every second
+  // Hero image slideshow
+  const heroImages = ['opera.jpg', 'paddel.jpg', 'grad.jpg'];
+  let i = 0;
+  setInterval(() => {
+    const hero = document.getElementById('hero-image');
+    i = (i + 1) % heroImages.length;
+    hero.style.opacity = 0;
+    setTimeout(() => {
+      hero.src = heroImages[i];
+      hero.style.opacity = 1;
+    }, 800);
+  }, 5000);
+
+  // Set current year in footer
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // Show/hide back to top button
+  window.onscroll = () => {
+    document.querySelector(".back-to-top").style.display =
+      window.scrollY > 300 ? "block" : "none";
+  };
+
+  // Game logic
+  const logo = document.getElementById('logo');
+  const game = document.getElementById('game');
+  let score = 0;
+
+  function moveLogo() {
+    const maxX = game.offsetWidth - logo.offsetWidth;
+    const maxY = game.offsetHeight - logo.offsetHeight;
+    logo.style.left = Math.random() * maxX + 'px';
+    logo.style.top = Math.random() * maxY + 'px';
+  }
+
+  // Move logo randomly every second
+  setInterval(moveLogo, 1000);
+  moveLogo(); // Initial position
+
+  // Score when clicked
+  logo.onclick = () => {
+    score++;
+    document.getElementById('score').textContent = score;
+  };
+
+ 
+  function handleRegister(e) {
+    e.preventDefault();
+    const name = document.getElementById('name').value;
+    const program = document.getElementById('program').value;
+    alert(`✅ Registration complete for ${name} in ${program}!`);
+    e.target.reset();
+  }
+
+
+  function handleComment(e) {
+    e.preventDefault();
+    const name = document.getElementById('commenter').value;
+    const msg = document.getElementById('comment').value;
+    const comments = JSON.parse(localStorage.getItem('comments') || '[]');
+    comments.unshift({ name, msg });
+    localStorage.setItem('comments', JSON.stringify(comments));
+    renderComments();
+    e.target.reset();
+  }
+
+ 
+  function renderComments() {
+    const display = document.getElementById('commentsDisplay');
+    display.innerHTML = '';
+    const comments = JSON.parse(localStorage.getItem('comments') || '[]');
+    comments.forEach((c, index) => {
+      const box = document.createElement("div");
+      box.innerHTML = `<strong>${c.name}:</strong><br>${c.msg} 
+        <button onclick="deleteComment(${index})">🗑</button>`;
+      display.appendChild(box);
+    });
+  }
+
+ 
+  function deleteComment(index) {
+    const comments = JSON.parse(localStorage.getItem('comments') || '[]');
+    comments.splice(index, 1);
+    localStorage.setItem('comments', JSON.stringify(comments));
+    renderComments();
+  }
+
+ 
+  window.addEventListener('DOMContentLoaded', renderComments);
+  const newsCards = document.querySelectorAll('.news-card');
+let currentNews = 0;
+
+function showNextNews() {
+  newsCards[currentNews].classList.remove('active');
+  currentNews = (currentNews + 1) % newsCards.length;
+  newsCards[currentNews].classList.add('active');
+}
+
+setInterval(showNextNews, 5000); // Switch news every 5 seconds
+  window.addEventListener('DOMContentLoaded', () => {
+  const audio = document.getElementById('welcomeAudio');
+  const playPromise = audio.play();
+
+  if (playPromise !== undefined) {
+    playPromise.catch(() => {
+      console.log('Autoplay was blocked. Playing sound on interaction.');
+      document.body.addEventListener('click', () => {
+        audio.play();
+      }, { once: true });
+    });
+  }
+});
+
+
+
+</script>
+
+</body>
+</html>
